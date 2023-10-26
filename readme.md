@@ -1,5 +1,7 @@
 "Hi, this is my 611 Data Science Project. More to come."
 
+This project focuses on trends in NFL offensive statistics in 2022. 
+
 First, build and run the Docker container by running the go.sh script in my GitHub repository
 or run the script below: 
 
