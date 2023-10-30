@@ -1,9 +1,8 @@
 .PHONY: clean 
 
 clean:
-	rm derived_data/*
-	rm logs/*
-	rm figures/*
+	rm -r ./derived_data/*
+	rm -r ./figures/*
 	
 nfl_offensive_stats_subset.csv: source_data/nfl_offensive_stats.csv read_in_data.R 
 	Rscript read_in_data.R
