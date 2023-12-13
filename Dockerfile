@@ -7,3 +7,4 @@ ARG USER_ID
 RUN usermod -u $USER_ID rstudio
 RUN chown -R rstudio:rstudio /home/rstudio
 
+
