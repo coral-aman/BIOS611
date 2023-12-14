@@ -1,6 +1,6 @@
 library(tidyverse)
 
-nfl_offensive_stats <- read_csv("source_data/nfl_offensive_stats.csv")
+nfl_offensive_stats <- read_csv("derived_data/nfl_offensive_stats_subset.csv")
 
 nfl_offensive_stats$position <- as.character(nfl_offensive_stats$position)
 
