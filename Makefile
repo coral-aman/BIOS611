@@ -26,6 +26,12 @@ NFL_principle_components.png: derived_data/numeric_offensivestats_subset.csv Pri
 NFL_principle_components_pass_yds.png: derived_data/numeric_offensivestats_subset.csv PCA_PassYds.R
 	Rscript PCA_PassYds.R
 	
+Clustering_PassingYards.png: derived_data/numeric_offensivestats_subset.csv clustering.R
+	Rscript clustering.R
+
+Clustering_RushingYards.png: derived_data/numeric_offensivestats_subset.csv Clustering_RushYds.R
+	Rscript Clustering_RushYds.R
+	
 regression_PassTd_PassYds.png: derived_data/nfl_offensive_stats_subset.csv Regression.R
 	Rscript Regression.R
 	
