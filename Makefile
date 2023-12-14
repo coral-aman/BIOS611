@@ -14,5 +14,17 @@ pass_completions.png: nfl_offensive_stats_subset.csv CompletePasses_ByTeam.R
 pass_touchdowns.png: derived_data/nfl_offensive_stats_subset.csv CompletePasses_ByTeam.R
 	Rscript PassingTouchdowns_ByTeam.R
 	
+numeric_offensivestats_subset.csv: source_data/nfl_offensive_stats.csv NumericSubset.R
+	Rscript NumericSubset.R
+	
+NFL_explained_variance.png: derived_data/numeric_offensivestats_subset.csv Dimensionality_Reduction.R
+	Rscript Dimensionality_Reduction.R
+
+NFL_principle_components.png: derived_data/numeric_offensivestats_subset.csv Dimensionality_Reduction.R
+	Rscript Dimensionality_Reduction.R
+
+NFL_principle_components_pass_yds.png: derived_data/numeric_offensivestats_subset.csv Dimensionality_Reduction.R
+	Rscript Dimensionality_Reduction.R
+	
 report.html: pass_completions.png pass_touchdowns.png 
 	R -e "rmarkdown::render(\"Report.Rmd\", output_format=\"html_document\")"
