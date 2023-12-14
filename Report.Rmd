@@ -1,5 +1,5 @@
 ---
-title: "Final BIOS 611 Project Report"
+title: "Final BIOS 611 Project Report: 2022 NFL Offensive Statistics Analysis"
 output: html_document
 date: "2023-12-14"
 ---
@@ -66,9 +66,21 @@ Looking at the results of grouping the subsetting data by NFL team and summing u
 ![Pass Completions](figures/pass_touchdowns.png)
 
 Next, I was interested in looking at the principal components and potential clustering of the dataset. 
-I first 
+I first subsetted the dataset to only include the numeric variables. Then, I performed PCA on the dataset and summarized the PCA results. Next, I calculated the variance and cumulative varaince of all the principal components. Below is the resulting figure displaying the proportion of total variance contriubted by each of the principal components. Based on the results of this analysis, I would feel comfortable keeping only the first 20 or so principal components. 
+
+![Cumulative Variance](figures/NFL_explained_variance.png)
+Next a created a figure of just the first two principal components of the dataset. 
+
+![Principal Components](figures/NFL_principle_components.png)
+Next, I wanted to look at the PCA results with one of the specific variables of interest. I created a plot of the first two principal components and colored the points in the scatterplot based on the passing yards variable. The purpose was to see the relationship between the principal components of the offensive statistics and passing yards. We can see that most of the passing yards fall in the range of PC1 (20, 30). I decided to look further and see perform clustering on this variable. 
+
+![PCA_PassYds](figures/NFL_principle_components_pass_yds.png)
+Next, I looked at kmeans clustering of the data specifically with some of the variables of interest. I performed kmeans clustering with 3 centers to create 3 clusters. Next, I created a density plot of passing yards 
 
 
-##Figures##
 
-##Future Questions##
+
+
+
+
+##Future Questions and Researh 
