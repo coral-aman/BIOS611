@@ -66,16 +66,42 @@ Looking at the results of grouping the subsetting data by NFL team and summing u
 ![Pass Completions](figures/pass_touchdowns.png)
 
 Next, I was interested in looking at the principal components and potential clustering of the dataset. 
-I first subsetted the dataset to only include the numeric variables. Then, I performed PCA on the dataset and summarized the PCA results. Next, I calculated the variance and cumulative varaince of all the principal components. Below is the resulting figure displaying the proportion of total variance contriubted by each of the principal components. Based on the results of this analysis, I would feel comfortable keeping only the first 20 or so principal components. 
+I first subsetted the dataset to only include the numeric variables. Then, I performed PCA on the dataset and summarized the PCA results. Next, I calculated the variance and cumulative varaince of all the principal components. Below is the resulting figure displaying the proportion of total variance contriubted by each of the principal components as a function of the number of components. As can be seen in this plot, the cumulative proportion of variance increases as the number of principal components increases. This plot indicates that we do not need all the principal components to see most of the variance and suggests using approximately the first 20 components for further analysis.
 
 ![Cumulative Variance](figures/NFL_explained_variance.png)
-Next a created a figure of just the first two principal components of the dataset. 
+Next a created a figure of just the first two principal components of the dataset. Looking at the figure below, we can see most points tend to cluster in the PC1 = (25,40), PC2 = (0, 100)
+range
 
 ![Principal Components](figures/NFL_principle_components.png)
-Next, I wanted to look at the PCA results with one of the specific variables of interest. I created a plot of the first two principal components and colored the points in the scatterplot based on the passing yards variable. The purpose was to see the relationship between the principal components of the offensive statistics and passing yards. We can see that most of the passing yards fall in the range of PC1 (20, 30). I decided to look further and see perform clustering on this variable. 
+Next, I wanted to look at the PCA results with one of the specific variables of interest. I created a plot of the first two principal components and colored the points in the scatterplot based on the passing yards variable. The purpose was to see the relationship between the principal components of the offensive statistics and passing yards. We can see that most of the passing yards fall in the range of PC1 (20, 40), PC2 (0,100). We also notice most of the passing yards in the 100 yards or less category fall into the PC1 range (20,30). This suggests futher subsetting of the passing yards variable into distinct groups, so I decided to look further and perform clustering on this variable. 
 
 ![PCA_PassYds](figures/NFL_principle_components_pass_yds.png)
-Next, I looked at kmeans clustering of the data specifically with some of the variables of interest. I performed kmeans clustering with 3 centers to create 3 clusters. Next, I created a density plot of passing yards 
+
+Next, I looked at kmeans clustering of the data specifically with some of the variables of interest. I performed kmeans clustering with 3 centers to create 3 clusters. Next, I created a density plot of passing yards and colored the points in the plot based on the three clusters. The plot allows for the display of the distribution of passing yards across the 3 clusters created. We can see cluster 1 had the highest density with passing yards in the (0, 5) range, and cluster 3 had the second highest density with passing yards moslty in the (15,30) range. 
+
+![Cluster_PassYds](figures/Clustering_PassingYards.png)
+I then looked at kmeans clustering of the data specifically for the rushing yards variable. I created a density plot of rushing yards and colored the points based on the three clusters, displaying the distribution of rushing yards across the 3 clusters created. We can see cluster 1 has the highest density with rushing yards in the (0, 5) range, and cluster 2 has the second highest density with rushing yards mostly in the (10,30) range. 
+
+![Cluster_RushYds](figures/Clustering_RushingYards.png)
+With the clustering displaying interesting findings, I decided to explore some of these variables further and create a regression model. I was interested to see if there was a linear relationship between passing touchdowns and passing yards. First, I summed up the total passing touchdowns and total passing yards for each NFL team. I fit a linear regression model with total passing touchdowns as the response variable and total passing yards as the predictor. Below is the resulting scatterplot displaying the relationship between passing touchdowns and passing yards for each NFL team. The dashed line is the regression line produced from the linear regression model. 
+
+![Regression](figures/regression_PassTd_PassYds.png)
+Looking at the plot above, we can see there is a positive correlation between total passing yards and total passing touchdowns. We see that some teams are above the fitted regression line (Chiefs, Bills, Cowboys), which indicates that these teams had more total passing touchdowns than what the linear regression model would predict based on their respective total passing yards. There are also teams below the regression model (49ers, Buccaneers, and Bengals), indicating these teams had less total passing touchdowns than what the model predicts based on their passing yards. 
+
+Here are the results from the regression model. We can see that the model results in a significant p-value (< 0.05), indicating that we have evidence to support a linear relationship between total passing touchdowns and total passing yards. The model results indicate that with each one unit increase in passing yards, the passing touchdowns increase by about 0.0084. 
+
+```{r}
+nfl_offensive_stats <- read_csv("derived_data/nfl_offensive_stats_subset.csv")
+
+team_stats <- nfl_offensive_stats %>%
+  group_by(team) %>%
+  summarise(total_passing_yards = sum(pass_yds),
+            total_passing_touchdowns = sum(pass_td))
+
+regression_model <- lm(total_passing_touchdowns ~ total_passing_yards, data = team_stats)
+
+summary(regression_model)
+```
 
 
 
