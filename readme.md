@@ -1,15 +1,15 @@
-#Hi, this is my 611 Data Science Project#
+# Hi, this is my 611 Data Science Project
 
 Note: I am using a M1 Mac, so it might be necesary to fiddle with the docker container.
 
-##Background on Docker## 
+## Background on Docker
 Docker is a containerization engine. It is essentially a light weight virtual machine that allows for reproducible deployment. Link to Docker documentation: [link]{https://docs.docker.com/)
 
-##Project Overview##
+## Project Overview
 
 This project uses a dataset from kaggle.com that includes NFL offensive statistics. The dataset is organized such that each row is comprised of a unique player's offensive statistics for a specific NFL game. This project focuses on identifying trends in these NFL offensive statistics specifically in year 2022. I am interested in how specific variables such as passing yards and pass completions differ among the NFL teams and players. I am also interested to see if there is a linear relationship between these variables and other factors such as the total number of passing touchdowns thrown by quarterbacks. I will perform analysis on this dataset and make some figures to display these trends. 
 
-##Building and Starting Docker##
+## Building and Starting Docker
 
 First, in your terminal, you must first connect to the local host, establishing a tunnel to port 8992. (ex: I first type this into my terminal: 'ssh coral23@bios611-09.bios.unc.edu -L 8992:localhost:8992')
 )
@@ -23,7 +23,7 @@ docker run -v $(pwd):/home/rstudio/work -p 8992:8787 -it 611'
 
 (The Dockerfile can be found on my Git repository)
 
-##Using Make to Build the Project Report##
+## Using Make to Build the Project Report
 Now that Docker has been built and run, Make can be used to build the artifacts and final project report. 
 Using Make to build the report: 
 
