@@ -1,4 +1,73 @@
-##Description of Data##
+---
+title: "Final BIOS 611 Project Report"
+output: html_document
+date: "2023-12-14"
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Description of Dataset
+The dataset I am using for my project consists of offensive statistics for NFL teams from 2019-2022. Each row of the dataset consists of the offensive statistics for a specific player in a specific game of the NFL season. Some of the numeric variables included in the dataset are passing yards, receiving yards, targets, passing touchdowns, rushing touchdowns, two-point conversions, and temperature at the game. There are also categorical variables included such as whether the game went into overtime, if the game was played in an outdoor or indoor stadium, and if the field was turf or grass. The dataset was very clean, organized, and did not appear to have any errors or duplicates. First, I subsetted the dataset to only the offfensive statistics from the year 2022. 
+
+Here is subsetted dataset: 
+```{r}
+library(readr)
+nfl_offensive_stats <- read_csv("derived_data/nfl_offensive_stats_subset.csv")
+```
+
+
+```{r}
+head(nfl_offensive_stats)
+```
+
+
+## Analysis of Data
+
+I picked a few variables of interest. I was interested in seeing how the total pass completions and total passing touchdowns varied among NFL teams in 2022. 
+
+```{r}
+
+agg_data <- nfl_offensive_stats %>%
+  group_by(team) %>%
+  summarise(Total_Pass_Completions = sum(pass_cmp)) %>%
+  arrange(desc(Total_Pass_Completions))
+
+agg_data$team <- reorder(agg_data$team, -agg_data$Total_Pass_Completions)
+
+```
+
+```{r}
+head(agg_data)
+```
+
+Looking at the results from grouping the data set by NFL team and summing the total number of pass completions in 2022, we see that Los Angeles Rams had the greatest number of pass completions (146), and the Cincinnati Bengals and the Kansas City Chiefs were tied for the second highest number (143). The team with the lowest number of pass completions was the New York Giants (19). I compiled the total pass completions into a barchart shown below. 
+
+![Pass Completions](figures/pass_completions.png)
+
+I was also interested in comparing the total number of passing touchdowns among the NFL teams in 2022. 
+
+```{r}
+agg_data2 <- nfl_offensive_stats %>%
+	group_by(team) %>%
+	summarise(Total_Pass_Tds = sum(pass_td)) %>%
+	arrange(desc(Total_Pass_Tds))
+
+agg_data2$team <- reorder(agg_data2$team, -agg_data2$Total_Pass_Tds)
+```
+
+```{r}
+head(agg_data2)
+```
+
+Looking at the results of grouping the subsetting data by NFL team and summing up the total amount of passing touchdowns in 2022, we see that the Chiefs had the highest number of passing touchdowns (16), and the Ravens and Commanders were tied for the lowest number of passing touchdowns (0). I compiled the results into a barchart shown below. 
+
+![Pass Completions](figures/pass_touchdowns.png)
+
+Next, I was interested in looking at the principal components and potential clustering of the dataset. 
+I first 
+
 
 ##Figures##
 
