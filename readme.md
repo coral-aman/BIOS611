@@ -3,7 +3,7 @@
 Note: I am using a M1 Mac, so it might be necesary to fiddle with the docker container.
 
 ##Background on Docker## 
-Docker is a containerization engine. It is essentially a light weight virtual machine that allows for reproducible deployment. Link to Docker documentation: https://docs.docker.com/
+Docker is a containerization engine. It is essentially a light weight virtual machine that allows for reproducible deployment. Link to Docker documentation: [link]{https://docs.docker.com/)
 
 ##Project Overview##
 
