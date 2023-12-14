@@ -35,5 +35,5 @@ Clustering_RushingYards.png: derived_data/numeric_offensivestats_subset.csv Clus
 regression_PassTd_PassYds.png: derived_data/nfl_offensive_stats_subset.csv Regression.R
 	Rscript Regression.R
 	
-report.html: pass_completions.png pass_touchdowns.png 
+report.html: pass_completions.png pass_touchdowns.png regression_PassTd_PassYds.png pass_touchdowns.png
 	R -e "rmarkdown::render(\"Report.Rmd\", output_format=\"html_document\")"
