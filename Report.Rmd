@@ -91,7 +91,6 @@ Looking at the plot above, we can see there is a positive correlation between to
 Here are the results from the regression model. We can see that the model results in a significant p-value (< 0.05), indicating that we have evidence to support a linear relationship between total passing touchdowns and total passing yards. The model results indicate that with each one unit increase in passing yards, the passing touchdowns increase by about 0.0084. 
 
 ```{r}
-nfl_offensive_stats <- read_csv("derived_data/nfl_offensive_stats_subset.csv")
 
 team_stats <- nfl_offensive_stats %>%
   group_by(team) %>%
@@ -103,11 +102,10 @@ regression_model <- lm(total_passing_touchdowns ~ total_passing_yards, data = te
 summary(regression_model)
 ```
 
-I also examined the relationship between 
+I also examined the relationship between total receiving yards for NFL wide receivers and total targets. Looking at the scatterplot below, we can see as the number of targets increased, the number of receiving yards also increased. 
 
 
-
-
+![RecYds_Targets](figures/RecYds_Targets.png)
 
 ##Future Questions and Researh 
 This project produced interesting results surrounding NFL offenisve statistics in 2022, specifically in relation to how passing touchdowns and passing completions differed among the NFL teams and how the total passing yards and rushing yards are clustered. The project also produced evidence of a linear relalationship between total passing touchdowns and total passsing yards. This analysis brings up further questions and research to be done. For example, I am interested to see other linear relationships among offensive statistics. This could include building a multivariate linear regression model and looking at for example, how a team's total score is a possible linear function of total rushing yards, total passing yards, total drops, and/or total interceptions thrown. I would also be interested in looking a the correlation of some of the categorical variables. For example, answering the question if total rushing yards is related to whether the game was played on turf/grass. 
